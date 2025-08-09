@@ -13,7 +13,7 @@
   static const String insertYourEmail = "لطفا ایمیلت رو وارد کن";
   static const String activateCode = "کد فعال سازی رو وارد کن ";
   static const String chooseCats = "دسته بندی هایی که دوست داری رو انتخاب کن";
-  static const String welcom = """به تک‌بلاگ خوش اومدی
+  static const String welcom = """به مینی بلاک خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;
@@ -22,7 +22,7 @@
 اضافه نکردی !!!""";
   static const String shareText = """
 
-من از تکبلاگ استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
+من از مینی بلاک استفاده میکنم ، خیلی باحاله ، تو هم داشته باش\n
 
 www.sasansafari.com
 
@@ -65,9 +65,9 @@ www.sasansafari.com
   static String writePodcast = "write podcast";
   static String titleArticleText = "مقالات";
   static String userProfile =  "پروفایل کاربری";
-  static String aboutTec =  "درباره تکبلاگ";
-  static String shareTec =  "اشتراک گذاری تک بلاگ";
-  static String tecIngithub =  "تک‌بلاگ در گیت هاب";
+  static String aboutTec =  "درباره مینی بلاک";
+  static String shareTec =  "اشتراک گذاری مینی بلاک";
+  static String tecIngithub =  "مینی بلاک در گیت هاب";
   static String shareKnowledge =  "دونسته هات رو با بقیه به اشتراک بذار ...";
   static String gigTech =  """
 فکر کن !!  اینجا بودنت به این معناست که یک گیک تکنولوژی هستی

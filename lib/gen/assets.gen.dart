@@ -14,6 +14,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/empty_state.png
+  AssetGenImage get emptyState =>
+      const AssetGenImage('assets/images/empty_state.png');
+
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
@@ -26,8 +30,33 @@ class $AssetsImagesGen {
   /// File path: assets/images/logo3.png
   AssetGenImage get logo3 => const AssetGenImage('assets/images/logo3.png');
 
+  /// File path: assets/images/poster_test.png
+  AssetGenImage get posterTest =>
+      const AssetGenImage('assets/images/poster_test.png');
+
+  /// File path: assets/images/profileAvatar.png
+  AssetGenImage get profileAvatar =>
+      const AssetGenImage('assets/images/profileAvatar.png');
+
+  /// File path: assets/images/single_place_holder.jpg
+  AssetGenImage get singlePlaceHolder =>
+      const AssetGenImage('assets/images/single_place_holder.jpg');
+
+  /// File path: assets/images/tcbot.svg
+  String get tcbot => 'assets/images/tcbot.svg';
+
   /// List of all assets
-  List<AssetGenImage> get values => [logo, logo1, logo2, logo3];
+  List<dynamic> get values => [
+    emptyState,
+    logo,
+    logo1,
+    logo2,
+    logo3,
+    posterTest,
+    profileAvatar,
+    singlePlaceHolder,
+    tcbot,
+  ];
 }
 
 class Assets {

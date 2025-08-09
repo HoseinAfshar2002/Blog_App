@@ -16,7 +16,7 @@ class _splashState extends State<splash> {
   @override
   void initState(){
     Future.delayed(Duration(seconds: 4)).then((value) {
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context).pushReplacement(CupertinoPageRoute(
 
           builder: (context)=>HomeScreen()));
     });
