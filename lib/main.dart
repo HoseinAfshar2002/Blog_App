@@ -1,6 +1,8 @@
 import 'package:blog_app/gen/assets.gen.dart';
+import 'package:blog_app/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 void main() {
   runApp( MyApp());
 }
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
      ),
 
 
-     home: Scaffold(body:Center(child: Assets.images.logo.image() ,) ,)
+     home: splash()
    );
 
   }
