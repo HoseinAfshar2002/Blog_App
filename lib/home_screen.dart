@@ -37,17 +37,42 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                  ),
-                  Container(
-                    width: size.width / 1.20,
-                    height: size.height / 4.2,
-                    decoration: BoxDecoration(
+                    // اضافه کردن گرادینت بنفش روی کانتینر و تصویر با فورگراند (دیگه نیاز نیست با استفاده از دو کانتینر گرادینت رو اعمال کنیم
+                    foregroundDecoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       gradient: LinearGradient(
                         colors: GradientColors.homePosterCoverGradiant,
                         begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter
+                        end: Alignment.bottomCenter,
                       ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    right: 0,
+                    left: 0,
+
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "حسین افشار - یک روز پیش",
+                              style: TextStyle(color: Colors.white,fontSize: 12),
+                            ),
+                            Text(
+                              "Like 253",
+                              style: TextStyle(color: Colors.white,fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          "دوازده قدم برنامه نویسی یک دوره ی...س",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
                     ),
                   ),
                 ],
