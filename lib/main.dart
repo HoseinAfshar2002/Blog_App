@@ -1,6 +1,6 @@
 import 'package:blog_app/colors.dart';
 import 'package:blog_app/gen/assets.gen.dart';
-import 'package:blog_app/splash.dart';
+import 'package:blog_app/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

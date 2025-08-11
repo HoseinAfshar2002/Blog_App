@@ -1,6 +1,6 @@
 import 'package:blog_app/colors.dart';
 import 'package:blog_app/gen/assets.gen.dart';
-import 'package:blog_app/home_screen.dart';
+import 'package:blog_app/view/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
