@@ -11,6 +11,70 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/audiofile.png
+  AssetGenImage get audiofile =>
+      const AssetGenImage('assets/icons/audiofile.png');
+
+  /// File path: assets/icons/blue_pen.png
+  AssetGenImage get bluePen => const AssetGenImage('assets/icons/blue_pen.png');
+
+  /// File path: assets/icons/down_cat_arrow.png
+  AssetGenImage get downCatArrow =>
+      const AssetGenImage('assets/icons/down_cat_arrow.png');
+
+  /// File path: assets/icons/hashtagicon.png
+  AssetGenImage get hashtagicon =>
+      const AssetGenImage('assets/icons/hashtagicon.png');
+
+  /// File path: assets/icons/home.png
+  AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
+  /// File path: assets/icons/microphon.png
+  AssetGenImage get microphon =>
+      const AssetGenImage('assets/icons/microphon.png');
+
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// File path: assets/icons/write.png
+  AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
+
+  /// File path: assets/icons/write_article.png
+  AssetGenImage get writeArticle =>
+      const AssetGenImage('assets/icons/write_article.png');
+
+  /// File path: assets/icons/write_article_icon.png
+  AssetGenImage get writeArticleIcon =>
+      const AssetGenImage('assets/icons/write_article_icon.png');
+
+  /// File path: assets/icons/write_microphone.png
+  AssetGenImage get writeMicrophone =>
+      const AssetGenImage('assets/icons/write_microphone.png');
+
+  /// File path: assets/icons/write_podcast_icon.png
+  AssetGenImage get writePodcastIcon =>
+      const AssetGenImage('assets/icons/write_podcast_icon.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    audiofile,
+    bluePen,
+    downCatArrow,
+    hashtagicon,
+    home,
+    microphon,
+    user,
+    write,
+    writeArticle,
+    writeArticleIcon,
+    writeMicrophone,
+    writePodcastIcon,
+  ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -62,6 +126,7 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
