@@ -13,7 +13,7 @@
   static const String insertYourEmail = "لطفا ایمیلت رو وارد کن";
   static const String activateCode = "کد فعال سازی رو وارد کن ";
   static const String chooseCats = "دسته بندی هایی که دوست داری رو انتخاب کن";
-  static const String welcom = """به مینی بلاک خوش اومدی
+  static const String welcom = """           به مینی بلاک خوش اومدی
 
 برای ارسال مطلب و پادکست باید حتما 
 ثبت نام کنی """;

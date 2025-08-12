@@ -16,6 +16,7 @@ List<Tag> tagList = [
   Tag(Title: "وب"),
   Tag(Title: "هوش مصنوعی"),
   Tag(Title: "برنامه نویسی"),
+  Tag(Title: "برنامه"),
 ];
 
 List<Blog> blogList = [

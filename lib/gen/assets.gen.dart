@@ -78,6 +78,13 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/MiniBot.png
+  AssetGenImage get miniBot => const AssetGenImage('assets/images/MiniBot.png');
+
+  /// File path: assets/images/MiniBot1.png
+  AssetGenImage get miniBot1 =>
+      const AssetGenImage('assets/images/MiniBot1.png');
+
   /// File path: assets/images/empty_state.png
   AssetGenImage get emptyState =>
       const AssetGenImage('assets/images/empty_state.png');
@@ -111,6 +118,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    miniBot,
+    miniBot1,
     emptyState,
     logo,
     logo1,

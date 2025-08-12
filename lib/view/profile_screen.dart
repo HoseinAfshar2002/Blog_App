@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
+import '../components.dart';
 import '../models/fake_data.dart';
 import '../strings.dart';
 
@@ -43,37 +44,19 @@ class profileScreen extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
           ),
           SizedBox(height: 20),
-          Divider(
-            height: 50,
-            color: Colors.black,
-            indent: 40,
-            endIndent: 40,
-            thickness: 1.5,
-          ),
+          DividerWidget(),
           InkWell(
             onTap: () {},
             splashColor: SolidColors.primaryColor,
             child: Text(MyStrings.myFavBlog),
           ),
-          Divider(
-            height: 50,
-            color: Colors.black,
-            indent: 40,
-            endIndent: 40,
-            thickness: 1.5,
-          ),
+          DividerWidget(),
           InkWell(
             onTap: () {},
             splashColor: SolidColors.primaryColor,
             child: Text(MyStrings.myFavPodcast),
           ),
-          Divider(
-            height: 50,
-            color: Colors.black,
-            indent: 40,
-            endIndent: 40,
-            thickness: 1.5,
-          ),
+          DividerWidget(),
           InkWell(
             onTap: () {},
             splashColor: SolidColors.primaryColor,
@@ -86,3 +69,5 @@ class profileScreen extends StatelessWidget {
     );
   }
 }
+
+
