@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
       ],
       theme: ThemeData(fontFamily: 'dana'),
 
-      // home: splash(),
+      home: splash(),
       // home: RegisterInfo(),
-      home: CategoryScreen(),
+      // home: CategoryScreen(),
     );
   }
 }

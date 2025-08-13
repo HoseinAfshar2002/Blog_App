@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../components.dart';
 import 'body_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,10 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   // هنگام اجرای اپ ایندکس 0 که ویجت صفحه اصلی است رو فعلا نمایش بده
   var SelectedIndexPage = 0;
 
+
   @override
   Widget build(BuildContext context) {
     // اندازه صفحه نمایش فعلی رو می‌گیره (عرض و ارتفاع)
-    var size = MediaQuery.of(context).size;
+    var size = MediaQuery
+        .of(context)
+        .size;
+
 
     return SafeArea(
       child: Scaffold(
@@ -32,7 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.menu, size: 30),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                       showModalBottomSheet(
+                         isScrollControlled: true,
+                        context: context, builder: (context) {
+                       return MenuBottomSheet();
+                      },);
+                    });
+                  },
+                  child: Icon(Icons.menu, size: 30)),
               Assets.images.logo2.image(height: size.height / 13.6),
               Icon(Icons.search, size: 30),
             ],

@@ -19,6 +19,13 @@ List<Tag> tagList = [
   Tag(Title: "برنامه"),
 ];
 
+
+
+List<Tag> addedTagRegisterList = [
+
+];
+
+
 List<Blog> blogList = [
   Blog(
     id: 1,

@@ -4,9 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
+import '../models/data_model.dart';
 import '../models/fake_data.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -14,6 +20,7 @@ class CategoryScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               SizedBox(height: 40),
@@ -31,34 +38,48 @@ class CategoryScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 100,
                   child: GridView.builder(
-                    itemCount: 6,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: tagList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 8,
                       crossAxisCount: 3,
                       crossAxisSpacing: 8,
-                      mainAxisExtent: 35
+                      mainAxisExtent: 35,
                     ),
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: 20,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: GradientColors.tags,
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(34)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.tag, color: Colors.white,size: 12,),
-                            SizedBox(width: 5,),
-                            Text(
-                              tagList[index].Title,
-                              style: TextStyle(color: Colors.white,fontSize: 10),
+                      return InkWell(
+                      onTap: () {
+                     setState(() {
+                       //  اگر ان ایندکس درتگ لیست وجود نداشت (contains)و ان درونش نیست ادش کن
+                       if(!addedTagRegisterList.contains(tagList[index])){
+                         addedTagRegisterList.add(tagList[index]);
+                       }
+                     });
+                      },
+                        child: Container(
+                          height: 20,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: GradientColors.tags,
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
                             ),
-                          ],
+                            borderRadius: BorderRadius.all(Radius.circular(34)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.tag, color: Colors.white, size: 12),
+                              SizedBox(width: 5),
+                              Text(
+                                tagList[index].Title,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -72,30 +93,45 @@ class CategoryScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 100,
                   child: GridView.builder(
-                    itemCount: 6,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: addedTagRegisterList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 8,
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 8,
-                        mainAxisExtent: 35
+                      mainAxisSpacing: 8,
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 8,
+                      mainAxisExtent: 35,
                     ),
                     itemBuilder: (context, index) {
-                      return Container(
-                        height: 20,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(34)),
-                          color: SolidColors.greyColor,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.tag, color: Colors.black,size: 12,),
-                            SizedBox(width: 5,),
-                            Text(
-                              tagList[index].Title,
-                              style: TextStyle(color: Colors.black,fontSize: 10),
-                            ),
-                          ],
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            addedTagRegisterList.removeAt(index);
+                          });
+                        },
+                        child: Container(
+                          height: 20,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(34)),
+                            color: SolidColors.greyColor,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.dangerous,
+                                color: Colors.black,
+                                size: 14,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                addedTagRegisterList[index].Title,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

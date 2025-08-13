@@ -1,10 +1,10 @@
 import 'package:blog_app/colors.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/strings.dart';
+import 'package:blog_app/view/category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
-
 
 import '../components.dart';
 
@@ -134,7 +134,7 @@ class PassBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height /1.3,
+      height: size.height / 1.3,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -159,7 +159,10 @@ class PassBottomSheet extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: () {
-
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => CategoryScreen()),
+                  );
                 },
                 child: Text(
                   "ادامه",
@@ -173,3 +176,4 @@ class PassBottomSheet extends StatelessWidget {
     );
   }
 }
+
