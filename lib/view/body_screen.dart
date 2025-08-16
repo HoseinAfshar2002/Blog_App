@@ -2,9 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../components/colors.dart';
 import '../models/fake_data.dart';
-import '../strings.dart';
+import '../components/strings.dart';
 
 class bodyScreen extends StatelessWidget {
   const bodyScreen({super.key, required this.size});

@@ -1,5 +1,5 @@
 import 'package:blog_app/gen/assets.gen.dart';
-import 'package:blog_app/strings.dart';
+import 'package:blog_app/components/strings.dart';
 import 'package:blog_app/view/category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -172,7 +172,8 @@ class MenuBottomSheet extends StatelessWidget {
             ),
             DividerWidget(),
             InkWell(
-              onTap: () {},
+              onTap: ()  {
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -187,7 +188,9 @@ class MenuBottomSheet extends StatelessWidget {
             ),
             DividerWidget(),
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

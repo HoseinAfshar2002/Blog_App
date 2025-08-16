@@ -2,11 +2,10 @@
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../colors.dart';
-import '../components.dart';
+import '../components/colors.dart';
+import '../components/components.dart';
 import '../models/fake_data.dart';
-import '../strings.dart';
+import '../components/strings.dart';
 
 class profileScreen extends StatelessWidget {
   const profileScreen({super.key, required this.size});

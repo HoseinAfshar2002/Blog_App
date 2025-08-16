@@ -1,9 +1,9 @@
-import 'package:blog_app/components.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../components/colors.dart';
+import '../components/components.dart';
 import '../models/data_model.dart';
 import '../models/fake_data.dart';
 

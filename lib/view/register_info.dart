@@ -1,12 +1,11 @@
-import 'package:blog_app/colors.dart';
 import 'package:blog_app/gen/assets.gen.dart';
-import 'package:blog_app/strings.dart';
+import 'package:blog_app/components/strings.dart';
 import 'package:blog_app/view/category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
-
-import '../components.dart';
+import '../components/colors.dart';
+import '../components/components.dart';
 
 class RegisterInfo extends StatelessWidget {
   @override
