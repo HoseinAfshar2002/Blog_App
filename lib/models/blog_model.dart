@@ -1,3 +1,5 @@
+import 'package:blog_app/components/api_const.dart';
+
 class BlogModel {
   String? id;
   String? title;
@@ -21,16 +23,15 @@ class BlogModel {
     required this.createdAt,
   });
 
-  BlogModel.fromJson(Map<String,dynamic> value){
-     id = value["id"];
-     title = value["title"];
-     image = value["image"];
-     catId = value["cat_id"];
-     catName = value["cat_name"];
-     author = value["author"];
-     view = value["view"];
-     status = value["status"];
-     createdAt = value["created_at"];
+  BlogModel.fromJson(Map<String, dynamic> value) {
+    id = value["id"];
+    title = value["title"];
+    image = ApiConst.hostDlUrl+value["image"];
+    catId = value["cat_id"];
+    catName = value["cat_name"];
+    author = value["author"];
+    view = value["view"];
+    status = value["status"];
+    createdAt = value["created_at"];
   }
-
 }

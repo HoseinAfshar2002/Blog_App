@@ -1,3 +1,4 @@
+import 'package:blog_app/components/api_const.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/models/fake_data.dart';
 import 'package:blog_app/components/strings.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../components/colors.dart';
 import '../components/components.dart';
+import '../servers/dio_server.dart';
 import 'body_screen.dart';
 
 
@@ -21,6 +23,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
+
+
     // اندازه صفحه نمایش فعلی رو می‌گیره (عرض و ارتفاع)
     var size = MediaQuery
         .of(context)
