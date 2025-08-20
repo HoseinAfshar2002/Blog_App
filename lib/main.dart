@@ -1,6 +1,8 @@
 import 'package:blog_app/gen/assets.gen.dart';
+import 'package:blog_app/view/blog_list.dart';
 import 'package:blog_app/view/category_screen.dart';
 import 'package:blog_app/view/register_info.dart';
+import 'package:blog_app/view/single_blog.dart';
 import 'package:blog_app/view/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,9 +38,11 @@ class MyApp extends StatelessWidget {
       ],
       theme: ThemeData(fontFamily: 'dana'),
 
-      home: splash(),
+      // home: splash(),
       // home: RegisterInfo(),
       // home: CategoryScreen(),
+      // home: BlogList(),
+      home: SingleBlog(size: Size(250, 250),),
     );
   }
 }

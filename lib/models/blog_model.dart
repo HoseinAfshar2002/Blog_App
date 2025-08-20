@@ -9,6 +9,7 @@ class BlogModel {
   String? author;
   String? view;
   String? status;
+  // String? isFavorite;
   String? createdAt;
 
   BlogModel({
@@ -20,13 +21,14 @@ class BlogModel {
     required this.author,
     required this.view,
     required this.status,
+    // this.isFavorite,
     required this.createdAt,
   });
 
   BlogModel.fromJson(Map<String, dynamic> value) {
     id = value["id"];
     title = value["title"];
-    image = ApiConst.hostDlUrl+value["image"];
+    image = ApiConst.hostDlUrl + value["image"];
     catId = value["cat_id"];
     catName = value["cat_name"];
     author = value["author"];

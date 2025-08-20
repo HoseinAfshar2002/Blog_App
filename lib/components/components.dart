@@ -213,3 +213,34 @@ class MenuBottomSheet extends StatelessWidget {
     );
   }
 }
+
+
+
+Padding AppBarWidget(String title) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          height: 35,
+          width: 35,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10000)),
+            color: Color.fromARGB(255, 150, 120, 175),
+          ),
+          child: Icon(
+            CupertinoIcons.left_chevron,
+            color: Colors.white,
+            size: 27,
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(color: Color.fromARGB(255, 66, 5, 87)),
+        ),
+      ],
+    ),
+  );
+}
+
