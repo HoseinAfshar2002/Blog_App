@@ -12,7 +12,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../components/components.dart';
 
-class BlogList extends StatelessWidget {
+class BlogListWhithMe extends StatelessWidget {
   BlogListController blogListController = Get.put(BlogListController());
   BlogSingleController blogSingleController = Get.put(BlogSingleController());
 

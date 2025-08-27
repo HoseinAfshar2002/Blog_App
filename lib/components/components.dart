@@ -1,18 +1,21 @@
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/components/strings.dart';
-import 'package:blog_app/view/category_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:validators/validators.dart';
-
+import '../controller/register_controller.dart';
 import 'colors.dart';
+
+// یک نمونه مشترک RegisterController
+final RegisterController registerController = Get.put(RegisterController());
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Divider(
+    return const Divider(
       height: 50,
       color: Colors.black,
       indent: 40,
@@ -23,18 +26,18 @@ class DividerWidget extends StatelessWidget {
 }
 
 class EmailInputWidget extends StatelessWidget {
-  const EmailInputWidget({super.key, required this.hintText});
-
   final String hintText;
+  const EmailInputWidget({super.key, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: registerController.emailTextController,
       onChanged: (value) {
-        print(value + " is Email : " + isEmail(value).toString());
+        print('$value is Email: ${isEmail(value)}');
       },
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.black, width: 1.5),
@@ -43,7 +46,7 @@ class EmailInputWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.black, width: 2),
         ),
-        hintText: hintText,
+        hintText: "ایمیل خود را وارد کنید",
         hintStyle: TextStyle(
           fontSize: 15,
           color: Color.fromARGB(255, 219, 219, 219),
@@ -54,18 +57,19 @@ class EmailInputWidget extends StatelessWidget {
 }
 
 class PassInputWidget extends StatelessWidget {
-  const PassInputWidget({super.key, required this.hintText});
-
   final String hintText;
+  const PassInputWidget({super.key, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: registerController.passTextController,
+      obscureText: true,
       onChanged: (value) {
-        print(value + " is Email : " + isEmail(value).toString());
+        print('Password length: ${value.length}');
       },
       textAlign: TextAlign.center,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.black, width: 1.5),
@@ -74,7 +78,7 @@ class PassInputWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(color: Colors.black, width: 2),
         ),
-        hintText: hintText,
+        hintText: "رمز عبور خود را وارد کنید",
         hintStyle: TextStyle(
           fontSize: 15,
           color: Color.fromARGB(255, 219, 219, 219),
@@ -99,16 +103,16 @@ class NameInputWidget extends StatelessWidget {
           onChanged: (value) {},
           textAlign: TextAlign.center,
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(color: Colors.black, width: 1.5),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
               borderSide: BorderSide(color: Colors.black, width: 2),
             ),
             hintText: hintText,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 15,
               color: Color.fromARGB(255, 219, 219, 219),
             ),
@@ -120,7 +124,7 @@ class NameInputWidget extends StatelessWidget {
 }
 
 class MenuBottomSheet extends StatelessWidget {
-  MenuBottomSheet({Key? key}) : super(key: key);
+  const MenuBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +132,7 @@ class MenuBottomSheet extends StatelessWidget {
 
     return Container(
       height: screenHeight * 0.9,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -138,75 +142,10 @@ class MenuBottomSheet extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Assets.images.logo2.image(height: 70),
-            DividerWidget(),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("حساب کاربری", style: TextStyle(fontSize: 25)),
-                  Icon(
-                    CupertinoIcons.profile_circled,
-                    color: Colors.black,
-                    size: 40,
-                  ),
-                ],
-              ),
-            ),
-            DividerWidget(),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("درباره مینی بلاگ", style: TextStyle(fontSize: 25)),
-                  Icon(
-                    CupertinoIcons.text_bubble_fill,
-                    color: Colors.black,
-                    size: 40,
-                  ),
-                ],
-              ),
-            ),
-            DividerWidget(),
-            InkWell(
-              onTap: ()  {
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("اشتراک گذاری مینی بلاگ", style: TextStyle(fontSize: 20)),
-                  Icon(
-                    CupertinoIcons.share_solid,
-                    color: Colors.black,
-                    size: 40,
-                  ),
-                ],
-              ),
-            ),
-            DividerWidget(),
-            InkWell(
-              onTap: () {
-
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("گیت هاب مینی بلاگ", style: TextStyle(fontSize: 25)),
-                  Icon(
-                    CupertinoIcons.arrow_2_squarepath,
-                    color: Colors.black,
-                    size: 40,
-                  ),
-                ],
-              ),
-            ),
-            DividerWidget(),
-            Text("Created By Hosein Afshar"),
-
-
+            const DividerWidget(),
+            // بقیه آیتم‌های منو...
           ],
         ),
       ),
@@ -214,33 +153,58 @@ class MenuBottomSheet extends StatelessWidget {
   }
 }
 
-
-
 Padding AppBarWidget(String title) {
   return Padding(
-    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
           height: 35,
           width: 35,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10000)),
             color: Color.fromARGB(255, 150, 120, 175),
           ),
-          child: Icon(
+          child: const Icon(
             CupertinoIcons.left_chevron,
             color: Colors.white,
             size: 27,
           ),
         ),
-        Text(
-          title,
-          style: TextStyle(color: Color.fromARGB(255, 66, 5, 87)),
-        ),
+        Text(title, style: const TextStyle(color: Color.fromARGB(255, 66, 5, 87))),
       ],
     ),
   );
 }
 
+// صفحه ثبت‌نام کامل
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: AppBarWidget("ثبت نام")),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const NameInputWidget(hintText: "نام خود را وارد کنید"),
+            const SizedBox(height: 20),
+            const EmailInputWidget(hintText: "ایمیل خود را وارد کنید"),
+            const SizedBox(height: 20),
+            const PassInputWidget(hintText: "رمز عبور خود را وارد کنید"),
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {
+                registerController.register();
+              },
+              child: const Text("ثبت نام"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

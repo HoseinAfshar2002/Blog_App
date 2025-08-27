@@ -1,5 +1,8 @@
 //  بادی اسکرین محتوای بین اپ بار و نو بار هست که از پوستر شروع و تا لیست پادکست ها ادامه داره و در واقع مواردی که در وسط صفحه هوم تغییر میکنه رو اینجا اکسترت ویجت کردیم
+import 'package:blog_app/controller/blog_single_controller.dart';
 import 'package:blog_app/controller/home_controller.dart';
+import 'package:blog_app/view/blog_list.dart';
+import 'package:blog_app/view/single_blog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,6 +17,7 @@ class bodyScreen extends StatelessWidget {
   bodyScreen({super.key, required this.size});
 
   HomeController homeController = Get.put(HomeController());
+  BlogSingleController blogSingleController = Get.put(BlogSingleController());
 
   final Size size;
 
@@ -23,44 +27,44 @@ class bodyScreen extends StatelessWidget {
       physics: BouncingScrollPhysics(),
 
       child: Obx(
-
-        () =>
-        Padding(
+        () => Padding(
           padding: const EdgeInsets.all(8.0),
-          child:homeController.loading.value==false ? Column(
-            children: [
-              // فاصله بین هدر و پسوستر
-              SizedBox(height: 20),
+          child: homeController.loading.value == false
+              ? Column(
+                  children: [
+                    // فاصله بین هدر و پسوستر
+                    SizedBox(height: 20),
 
-              //  پوستر صفحه اصلی
-              PosterWidget(size: size),
+                    //  پوستر صفحه اصلی
+                    PosterWidget(size: size),
 
-              // فاصله بین پوستر و لیست تگ
-              SizedBox(height: 18),
+                    // فاصله بین پوستر و لیست تگ
+                    SizedBox(height: 18),
 
-              // لیست تگ ها
-              TagListWidget(size: size),
+                    // لیست تگ ها
+                    TagListWidget(size: size),
 
-              // فاصله بین لیست تگ و داغ ترین نوشته
-              SizedBox(height: 15),
+                    // فاصله بین لیست تگ و داغ ترین نوشته
+                    SizedBox(height: 15),
 
-              // مشاهده داغ ترین نوشته ها
-              SeeMoreBlogHot(size: size),
+                    // مشاهده داغ ترین نوشته ها
+                    SeeMoreBlogListWidget(size: size),
 
-              //   لیست مقالات داغ ترین ها
-              BlogListWidget(size: size),
+                    //   لیست مقالات داغ ترین ها
+                    BlogListWidget(size: size),
 
-              SizedBox(height: 15),
+                    SizedBox(height: 15),
 
-              // مشاهده داغ ترین پادکست ها
-              SeeMorePodcast(size: size),
+                    // مشاهده داغ ترین پادکست ها
+                    SeeMorePodcast(size: size),
 
-              //   لیست پادکست داغ ترین ها
-              PodcastListWidget(size: size),
-              // دادن فاصله از پایین برای دیده شده کامل لیست داغ ترین پادکست ها
-              SizedBox(height: 99),
-            ],
-          ):SpinKitFadingCircle(size: 60,color: SolidColors.primaryColor,)
+                    //   لیست پادکست داغ ترین ها
+                    PodcastListWidget(size: size),
+                    // دادن فاصله از پایین برای دیده شده کامل لیست داغ ترین پادکست ها
+                    SizedBox(height: 99),
+                  ],
+                )
+              : SpinKitFadingCircle(size: 60, color: SolidColors.primaryColor),
         ),
       ),
     );
@@ -74,67 +78,75 @@ class bodyScreen extends StatelessWidget {
           itemCount: homeController.topBlogList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(0, 6, size.width / 22, 0),
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              homeController.topBlogList[index].image!,
+            return GestureDetector(
+              onTap: () {
+                blogSingleController.getBlogSingleItems(
+                  int.parse(homeController.topBlogList[index].id!),
+                );
+                Get.to(SingleBlog());
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 6, size.width / 22, 0),
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                homeController.topBlogList[index].image!,
+                              ),
+                              fit: BoxFit.cover,
                             ),
-                            fit: BoxFit.cover,
+                          ),
+                          height: size.height / 5.6,
+                          width: size.width / 2.4,
+                        ),
+                        Positioned(
+                          bottom: 8,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                homeController.topBlogList[index].author!,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    homeController.topBlogList[index].view!,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(width: 2),
+                                  Icon(
+                                    Icons.remove_red_eye,
+                                    color: Colors.white,
+                                    size: 15,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        height: size.height / 5.6,
-                        width: size.width / 2.4,
-                      ),
-                      Positioned(
-                        bottom: 8,
-                        left: 0,
-                        right: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              homeController.topBlogList[index].author!,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  homeController.topBlogList[index].view!,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                SizedBox(width: 2),
-                                Icon(
-                                  Icons.remove_red_eye,
-                                  color: Colors.white,
-                                  size: 15,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 3),
-
-                  SizedBox(
-                    child: Text(
-                      homeController.topBlogList[index].title!,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                      ],
                     ),
-                    width: size.width / 2.7,
-                  ),
-                ],
+                    SizedBox(height: 3),
+
+                    SizedBox(
+                      child: Text(
+                        homeController.topBlogList[index].title!,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+                      width: size.width / 2.7,
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -245,8 +257,7 @@ class bodyScreen extends StatelessWidget {
     );
   }
 
-
-  Widget TagListWidget ({required Size size}){
+  Widget TagListWidget({required Size size}) {
     return SizedBox(
       height: 60,
       child: ListView.builder(
@@ -283,6 +294,30 @@ class bodyScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget SeeMoreBlogListWidget({required Size size}) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(BlogList());
+      },
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, size.width / 25, 0),
+        child: Row(
+          children: [
+            Icon(CupertinoIcons.pen, color: SolidColors.colorTitle, size: 30),
+            Text(
+              MyStrings.viewHotestBlog,
+              style: TextStyle(
+                color: SolidColors.colorTitle,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class SeeMorePodcast extends StatelessWidget {
@@ -299,32 +334,6 @@ class SeeMorePodcast extends StatelessWidget {
           Icon(CupertinoIcons.mic, color: SolidColors.colorTitle, size: 30),
           Text(
             MyStrings.viewHotestPodCasts,
-            style: TextStyle(
-              color: SolidColors.colorTitle,
-              fontSize: 16,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class SeeMoreBlogHot extends StatelessWidget {
-  const SeeMoreBlogHot({super.key, required this.size});
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, size.width / 25, 0),
-      child: Row(
-        children: [
-          Icon(CupertinoIcons.pen, color: SolidColors.colorTitle, size: 30),
-          Text(
-            MyStrings.viewHotestBlog,
             style: TextStyle(
               color: SolidColors.colorTitle,
               fontSize: 16,

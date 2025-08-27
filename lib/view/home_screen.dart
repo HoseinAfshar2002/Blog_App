@@ -3,6 +3,7 @@ import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/models/fake_data.dart';
 import 'package:blog_app/components/strings.dart';
 import 'package:blog_app/view/profile_screen.dart';
+import 'package:blog_app/view/register_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,29 +13,16 @@ import '../components/components.dart';
 import '../servers/dio_server.dart';
 import 'body_screen.dart';
 
-
-
 class HomeScreen extends StatelessWidget {
   // هنگام اجرای اپ ایندکس 0 که ویجت صفحه اصلی است رو فعلا نمایش بده
   RxInt SelectedIndexPage = 0.obs;
 
   HomeScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
-
-
     // اندازه صفحه نمایش فعلی رو می‌گیره (عرض و ارتفاع)
-    var size = MediaQuery
-        .of(context)
-        .size;
-
+    var size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -46,16 +34,17 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                  onTap: () {
-
-                       showModalBottomSheet(
-                         isScrollControlled: true,
-                        context: context, builder: (context) {
-                       return MenuBottomSheet();
-                      },);
-
-                  },
-                  child: Icon(Icons.menu, size: 30)),
+                onTap: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) {
+                      return RegisterInfo();
+                    },
+                  );
+                },
+                child: Icon(Icons.menu, size: 30),
+              ),
               Assets.images.logo2.image(height: size.height / 13.6),
               Icon(Icons.search, size: 30),
             ],
@@ -64,18 +53,20 @@ class HomeScreen extends StatelessWidget {
         body: Stack(
           children: [
             Center(
-              child: Obx(() => IndexedStack(
-                // این یعنی در اصل ایندکس پیش فرض برای نمایش همان مقدار صفر است که در متغیر بالا تعریف شد
-                index: SelectedIndexPage.value,
-                // یک لیست می سازد از صفحاتی که می خواهیم در جای دلخواه نمایش داده شود
-                children: [
-                  // ایندکس 0
-                  bodyScreen(size: size),
-                  // ایندکس 1
-                  profileScreen(size: size),
-                  //   با کلیک روی گزینه های نویگیشن بار که هر کدام یک ورودی اینت دارد ان ورودی را برابر با سلکتد ایندکس پیج قرار می دهیم
-                ],
-              ),)
+              child: Obx(
+                () => IndexedStack(
+                  // این یعنی در اصل ایندکس پیش فرض برای نمایش همان مقدار صفر است که در متغیر بالا تعریف شد
+                  index: SelectedIndexPage.value,
+                  // یک لیست می سازد از صفحاتی که می خواهیم در جای دلخواه نمایش داده شود
+                  children: [
+                    // ایندکس 0
+                    bodyScreen(size: size),
+                    // ایندکس 1
+                    profileScreen(size: size),
+                    //   با کلیک روی گزینه های نویگیشن بار که هر کدام یک ورودی اینت دارد ان ورودی را برابر با سلکتد ایندکس پیج قرار می دهیم
+                  ],
+                ),
+              ),
             ),
 
             // باتم نویگیشن
@@ -84,9 +75,8 @@ class HomeScreen extends StatelessWidget {
               changeScreen: (int value) {
                 // ست استیت برای ری بیلد یا همان اجرای دوباره است
 
-                  // ایندکسی که در بالا پیش فرض 0 قرار داده شده بود با مقدار نویگیشن که 0 یا 1 است جایگزین میشود و value همان اعداد ورودی فانکشن چنج اسکرین است
-                  SelectedIndexPage.value = value;
-
+                // ایندکسی که در بالا پیش فرض 0 قرار داده شده بود با مقدار نویگیشن که 0 یا 1 است جایگزین میشود و value همان اعداد ورودی فانکشن چنج اسکرین است
+                SelectedIndexPage.value = value;
               },
             ),
           ],
@@ -130,7 +120,11 @@ class BtnNav extends StatelessWidget {
                   onTap: () => changeScreen(0),
                   child: Assets.icons.home.image(height: 40),
                 ),
-                Assets.icons.write.image(height: 40),
+                InkWell(
+                    onTap: () {
+                      Get.to(RegisterInfo());
+                    },
+                    child: Assets.icons.write.image(height: 40)),
                 InkWell(
                   // مقدار 1 در فانکشن چنج اسکرین برابر با همان value است که نام ورودی فانکشن است
                   onTap: () => changeScreen(1),

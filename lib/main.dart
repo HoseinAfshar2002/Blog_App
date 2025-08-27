@@ -1,6 +1,7 @@
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/view/blog_list.dart';
 import 'package:blog_app/view/category_screen.dart';
+import 'package:blog_app/view/create_blog_intro.dart';
 import 'package:blog_app/view/register_info.dart';
 import 'package:blog_app/view/single_blog.dart';
 import 'package:blog_app/view/splash.dart';
@@ -26,23 +27,17 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale('fa'), // Farsi.
-      ],
+   locale: Locale('fa'),
       theme: ThemeData(fontFamily: 'dana'),
 
-      // home: splash(),
+      home: splash(),
       // home: RegisterInfo(),
       // home: CategoryScreen(),
       // home: BlogList(),
-      home: SingleBlog(size: Size(250, 250),),
+      // home: SingleBlog(),
+      // home: CreateBlogIntro(),
     );
   }
 }

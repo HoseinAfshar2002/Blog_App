@@ -1,7 +1,11 @@
 import 'package:blog_app/components/colors.dart';
+import 'package:blog_app/controller/blog_controller.dart';
+import 'package:blog_app/controller/blog_list_controller.dart';
+import 'package:blog_app/controller/blog_single_controller.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -9,18 +13,19 @@ import '../components/strings.dart';
 import '../controller/home_controller.dart';
 
 class SingleBlog extends StatelessWidget {
-  HomeController homeController = Get.put(HomeController());
-  final Size size;
+  BlogListController blogListController = Get.put(BlogListController());
+  BlogController blogController = Get.put(BlogController());
+  BlogSingleController blogSingleController = Get.put(BlogSingleController());
 
-  SingleBlog({super.key, required this.size});
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Obx(
-            () => Column(
+            () => blogSingleController.loading  == false ? Column(
               children: [
                 Stack(
                   children: [
@@ -29,7 +34,7 @@ class SingleBlog extends StatelessWidget {
                       height: 200,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: Assets.images.singlePlaceHolder.provider(),
+                          image: NetworkImage(blogSingleController.blogSingleModel.value.image!),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -73,7 +78,7 @@ class SingleBlog extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "رازهای اساسینز کرید والهالا؛ از هری پاتر و ارباب حلقه‌ها تا دارک سولز",
+                      blogSingleController.blogSingleModel.value.title!
                   ),
                 ),
                 Padding(
@@ -85,35 +90,30 @@ class SingleBlog extends StatelessWidget {
                         height: 30,
                       ),
                       SizedBox(width: 10),
-                      Text("فاطمه امیری"),
+                      Text(blogSingleController.blogSingleModel.value.author!),
                       SizedBox(width: 10),
-                      Text("2 روز پیش"),
+                      Text(blogSingleController.blogSingleModel.value.createdAt!),
                     ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    """چند ماه پیش جدیدترین قسمت از مجموعه بازی‌های اساسینز کرید عرضه شد. بازی اساسینز کرید والهالا ماجرای قاتلان تاریخی را در سرزمین وایکینگ‌ها روایت می‌کند و تفاوت عظیمی با بازی‌های اصلی این سری دارد. البته چیزی که در این بازی حاضر هست و در دیگر بازی‌های این سری هم همیشه موجود بوده، حجم بالایی از محتوای مخفی و رازهای عجیب و غریب است. قصد داریم تا نگاهی به آن‌ها داشته باشیم تا در صورتی که آن‌ها را ندیده‌اید، غافل نمانید.
-                  """,
+                      blogSingleController.blogSingleModel.value.content!
                   ),
                 ),
                 SizedBox(
                   height: 60,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: homeController.tagList.length,
+                    itemCount: blogSingleController.blogSingleModel.value.catId!.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.fromLTRB(0, 8, size.width / 18, 8),
+                        padding: EdgeInsets.fromLTRB(0, 8, 5, 8),
                         child: Container(
                           height: 20,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: GradientColors.tags,
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
-                            ),
+                            color: Colors.grey,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                           child: Padding(
@@ -122,8 +122,8 @@ class SingleBlog extends StatelessWidget {
                               children: [
                                 Icon(Icons.tag, color: Colors.white),
                                 Text(
-                                  homeController.tagList[index].title!,
-                                  style: TextStyle(color: Colors.white),
+                                  blogSingleController.blogSingleModel.value.catName!,
+                                  style: TextStyle(color: Colors.black),
                                 ),
                               ],
                             ),
@@ -133,9 +133,9 @@ class SingleBlog extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, size.width / 25, 0),
+                  padding: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   child: Row(
                     children: [
                       Icon(
@@ -154,8 +154,109 @@ class SingleBlog extends StatelessWidget {
                     ],
                   ),
                 ),
+                SizedBox(height: 30),
+                SizedBox(
+                  height: 250,
+                  child: Obx(
+                    () => ListView.builder(
+                      itemCount: blogSingleController.relatedList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                        onTap: () {
+                          blogSingleController.getBlogSingleItems(
+                            int.parse(blogSingleController.relatedList[index].id!),
+                          );
+                          Get.to(SingleBlog());
 
+                        },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(10, 6, 10, 0),
+                            child: Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            blogSingleController
+                                                .relatedList[index]
+                                                .image!,
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      height: 150,
+                                      width: 150,
+                                    ),
+                                    Positioned(
+                                      bottom: 8,
+                                      left: 0,
+                                      right: 0,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text(
+                                            blogSingleController
+                                                .relatedList[index]
+                                                .author!,
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                blogSingleController
+                                                    .relatedList[index]
+                                                    .view!,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              SizedBox(width: 2),
+                                              Icon(
+                                                Icons.remove_red_eye,
+                                                color: Colors.white,
+                                                size: 15,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 3),
+
+                                SizedBox(
+                                  child: Text(
+                                    blogSingleController
+                                        .relatedList[index]
+                                        .title!,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                  width: 100
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ],
+            ) : SpinKitFadingCircle(
+              size: 60,
+              color: SolidColors.primaryColor,
+
             ),
           ),
         ),
