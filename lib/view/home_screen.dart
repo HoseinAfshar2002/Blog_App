@@ -1,4 +1,5 @@
 import 'package:blog_app/components/api_const.dart';
+import 'package:blog_app/controller/register_controller.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/models/fake_data.dart';
 import 'package:blog_app/components/strings.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../components/colors.dart';
-import '../components/components.dart';
+import '../components/components.dart' hide registerController;
 import '../servers/dio_server.dart';
 import 'body_screen.dart';
 
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   RxInt SelectedIndexPage = 0.obs;
 
   HomeScreen({super.key});
+  RegisterController registerController = Get.put(RegisterController(),permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +124,7 @@ class BtnNav extends StatelessWidget {
                 ),
                 InkWell(
                     onTap: () {
-                      Get.to(RegisterInfo());
+                   registerController.checkLogin();
                     },
                     child: Assets.icons.write.image(height: 40)),
                 InkWell(

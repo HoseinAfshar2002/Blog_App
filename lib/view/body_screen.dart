@@ -1,6 +1,7 @@
 //  بادی اسکرین محتوای بین اپ بار و نو بار هست که از پوستر شروع و تا لیست پادکست ها ادامه داره و در واقع مواردی که در وسط صفحه هوم تغییر میکنه رو اینجا اکسترت ویجت کردیم
 import 'package:blog_app/controller/blog_single_controller.dart';
 import 'package:blog_app/controller/home_controller.dart';
+import 'package:blog_app/controller/register_controller.dart';
 import 'package:blog_app/view/blog_list.dart';
 import 'package:blog_app/view/single_blog.dart';
 import 'package:flutter/cupertino.dart';

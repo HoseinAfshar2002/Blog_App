@@ -10,10 +10,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'components/colors.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
+
   //استایل دهی رنگ نوار بالایی و پایینی موبایل
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(

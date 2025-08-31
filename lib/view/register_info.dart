@@ -149,11 +149,12 @@ class PassBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => CategoryScreen()),
-                );
+              onPressed: () async {
+                await registerController.verify();
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => CategoryScreen()),
+                // );
               },
               child: const Text("ادامه"),
             ),
