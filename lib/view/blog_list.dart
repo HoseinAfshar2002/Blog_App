@@ -87,14 +87,25 @@ class BlogList extends StatelessWidget {
                         );
                       },
                     )
-                  : SpinKitFadingCircle(
-                      size: 60,
-                      color: SolidColors.primaryColor,
-                    ),
+                  : LoadingWidget(),
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SpinKitFadingCircle(
+        size: 60,
+        color: SolidColors.primaryColor,
+      );
   }
 }

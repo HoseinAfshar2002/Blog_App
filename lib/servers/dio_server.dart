@@ -63,6 +63,10 @@ class DioServer {
           log(response.data.toString());
           log(response.statusCode.toString());
           return response;
-        });
+        }).catchError((err){
+          if(err is DioException){
+            return err.response!;
+          }
+    });
   }
 }

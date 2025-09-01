@@ -1,2 +1,15 @@
-const String tokenKey = "token";
-String userId = "userId";
+
+class Storage {
+
+
+  static String tokenKey = "token";
+  static String userId = "userId";
+
+}
+
+
+
+
+
+
+

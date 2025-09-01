@@ -46,10 +46,10 @@ class RegisterController extends GetxController {
     switch (status) {
       case 'verified':
         var box = GetStorage();
-        box.write(tokenKey, response.data['token']);
-        box.write(user_id, response.data['user_id']);
-        print("read ::: " + box.read(tokenKey));
-        print("read ::: " + box.read(user_id));
+        box.write(Storage.tokenKey, response.data['token']);
+        box.write(Storage.userId, response.data['user_id']);
+        print("read ::: " + box.read(Storage.tokenKey));
+        print("read ::: " + box.read(Storage.userId));
         Get.offAll(HomeScreen());
         break;
       case 'incorrect_code':
@@ -64,10 +64,10 @@ class RegisterController extends GetxController {
   }
 
   checkLogin() {
-    if (GetStorage().read(tokenKey) == null) {
+    if (GetStorage().read(Storage.tokenKey) == null) {
       Get.to(RegisterInfo());
     } else {
-      Get.to(goToBtm());
+      goToBtm();
     }
   }
 
