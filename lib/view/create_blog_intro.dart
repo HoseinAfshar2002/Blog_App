@@ -3,8 +3,8 @@ import 'package:blog_app/controller/register_controller.dart';
 import 'package:blog_app/gen/assets.gen.dart';
 import 'package:blog_app/components/strings.dart';
 import 'package:blog_app/view/blog_list.dart';
-import 'package:blog_app/view/blog_list_whith_me.dart';
 import 'package:blog_app/view/category_screen.dart';
+import 'package:blog_app/view/create_edit_blog.dart';
 import 'package:blog_app/view/single_blog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +104,7 @@ class CreateBlogIntro extends StatelessWidget {
           ),
           child: TextButton(
             onPressed: () {
-
+              Get.to(CreateEditBlog());
 
             },
             child: Text(

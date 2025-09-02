@@ -13,21 +13,19 @@ class BlogSingleModel {
   String? createdAt;
   bool? isFavorite;
 
-  BlogSingleModel(
-  // {
-    // required this.id,
-    // required this.title,
-    // required this.content,
-    // required this.image,
-    // required this.catId,
-    // required this.catName,
-    // required this.author,
-    // required this.view,
-    // required this.status,
-    // required this.createdAt,
-    // required this.isFavorite,
-// }
-  );
+  BlogSingleModel({
+    // this.id,
+    this.title,
+    this.content,
+    this.image,
+    // this.catId,
+    // this.catName,
+    // this.author,
+    // this.view,
+    // this.status,
+    // this.createdAt,
+    // this.isFavorite,
+  });
 
   BlogSingleModel.fromJson(Map<String, dynamic> value) {
     id = value['info']["id"];

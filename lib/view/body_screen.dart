@@ -57,7 +57,7 @@ class bodyScreen extends StatelessWidget {
                     SizedBox(height: 15),
 
                     // مشاهده داغ ترین پادکست ها
-                    SeeMorePodcast(size: size),
+                    SeeMorePodcastWidget(size: size),
 
                     //   لیست پادکست داغ ترین ها
                     PodcastListWidget(size: size),
@@ -319,15 +319,9 @@ class bodyScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-class SeeMorePodcast extends StatelessWidget {
-  const SeeMorePodcast({super.key, required this.size});
 
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget SeeMorePodcastWidget({required Size size}){
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, size.width / 25, 0),
       child: Row(
@@ -346,5 +340,6 @@ class SeeMorePodcast extends StatelessWidget {
     );
   }
 }
+
 
 
