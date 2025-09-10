@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                     isScrollControlled: true,
                     context: context,
                     builder: (context) {
-                      return RegisterInfo();
+                      return MenuBottomSheet();
                     },
                   );
                 },

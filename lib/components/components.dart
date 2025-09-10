@@ -153,6 +153,36 @@ class MenuBottomSheet extends StatelessWidget {
   }
 }
 
+class SelectTagsBottomSheet extends StatelessWidget {
+  const SelectTagsBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var screenHeight = MediaQuery.of(context).size.height;
+
+    return Container(
+      height: screenHeight * 0.9,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        color: Colors.white,
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            Assets.images.logo2.image(height: 70),
+            const DividerWidget(),
+            // بقیه آیتم‌های منو...
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 Padding AppBarWidget(String title) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),

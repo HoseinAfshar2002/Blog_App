@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:blog_app/components/storage.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_server;
+import 'package:get_storage/get_storage.dart';
 
 // کتابخونه‌ی dio رو وارد می‌کنیم
 // dio مثل یه راننده‌ست که می‌تونه درخواست‌های HTTP (GET, POST, PUT, DELETE) رو برای ما به سرور بفرسته
@@ -51,7 +53,10 @@ class DioServer {
 
   Future<dynamic> methodPost(Map<String, dynamic> map, String url) async {
     dio.options.headers['content-Type'] = 'application/json';
-
+   var token = GetStorage().read(Storage.tokenKey);
+   if(token!=null){
+   dio.options.headers['authorization'] = '$token';
+   }
     return await dio
         .post(
           url,
